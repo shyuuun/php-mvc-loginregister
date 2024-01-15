@@ -45,7 +45,7 @@ class Database {
                     $type = PDO::PARAM_BOOL;
                     break;
                 case is_null($value):
-                    $type = PDO::PARAM_BOOL;
+                    $type = PDO::PARAM_NULL;
                     break; 
                 default:
                     $type = PDO::PARAM_STR;

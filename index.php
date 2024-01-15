@@ -3,6 +3,7 @@
     require_once(__DIR__.'/includes/alert-functions.php');
     require_once(__DIR__.'/controller/register.con.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +75,7 @@
 
                                     <!-- Submit button -->
                                     <button type="submit" class="btn btn-primary btn-block mb-4">
-                                        Sign up
+                                        ochinchin
                                     </button>
                                 </form>
                             </div>

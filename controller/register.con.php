@@ -1,8 +1,7 @@
 <?php 
-require_once(__DIR__.'./includes/session-functions.php');
-require_once(__DIR__.'./includes/alert-functions.php');
-
-require_once(__DIR__.'./model/register.mod.php');
+require_once __DIR__.'/../includes/session-functions.php';
+require_once __DIR__.'/../includes/alert-functions.php';
+require_once __DIR__.'/../model/register.mod.php';
 
 
 class RegisterController {
@@ -27,27 +26,27 @@ class RegisterController {
         // if empty input
         if(empty($data['firstName']) || empty($data['secondName']) || empty($data['email']) || empty($data['pass'])){
             flash('register', 'invalid input', FLASH_WARNING);
-            redirect("index.php");
-        } 
+            redirect('/../index.php');
+        }
 
         // email validation
-
-        if(!filter_var($data['userEmail'], FILTER_VALIDATE_EMAIL)){
-            flash("register", "Invalid email", FLASH_WARNING);
-            redirect("index.php");
+        if($this->registerModel->checkUserExist($data['email'])){
+            flash("register", "Email is already taken", FLASH_WARNING);
+            redirect('/../index.php');
         }
+        // password hashing 
 
-        // 
-        if(strlen($data['userPass']) < 6){
-            flash("register", "Password should be longer than 6");
-            redirect("/GraceThesis/register.php");
-        }
+        $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
+
+        
 
         // send data to our registermodel
         if($this->registerModel->registerModel($data)){
-            echo 'user registered to our system';
+            flash('register', 'user adding to database', FLASH_INFO);
+            redirect('/../index.php');
         } else {
-            echo 'user does not registered to our system due to a certain error';
+            flash('register', 'There is a error adding this user into database', FLASH_ERROR);
+            redirect('/../index.php');
         }
     }
 

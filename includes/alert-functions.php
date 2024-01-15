@@ -39,9 +39,9 @@ function display_flash(string $name): void {
     echo formatMsg($flash_msg);
 }
 
-function flash(string $name='', string $msg='', string $type=''): void {
-    if ($name !== '' && $msg !== '' && $type !== '') {
-        createFlash($name, $msg, $type);
+function flash(string $name='', string $msg='', string $flashType=''): void {
+    if ($name !== '' && $msg !== '' && $flashType !== '') {
+        createFlash($name, $msg, $flashType);
     } else {
         display_flash($name);
     }
